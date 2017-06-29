@@ -155,6 +155,9 @@ form.node_edit_form .field input {
 form.node_edit_form .field.name input {
     width: 140px;
 }
+form.node_edit_form .field.code input {
+    width: 60px;
+}
 form.node_edit_form .field.code:before {
     content: "";
     display: inline-block;
