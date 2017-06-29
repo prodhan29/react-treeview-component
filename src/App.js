@@ -1,44 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-var treeData = {
-  name: 'Bangladesh',
-  exportValue: 'BD',
-  showChildren: true,
-  editMode: false,
-  children: [
-    {
-      name: 'khulna',
-      exportValue: 1,
-      showChildren: false,
-      editMode: false,
-      children: []
-    },
-    {
-      name: 'Rajshahi',
-      exportValue: 4,
-      showChildren: true,
-      editMode: false,
-      children: [
-        {
-          name: 'khulna',
-          exportValue: 1,
-          showChildren: false,
-          editMode: false,
-          children: []
-        }, {
-          name: 'khulna',
-          exportValue: 1,
-          showChildren: false,
-          editMode: false,
-          children: []
-        }
-      ]
-    }
-
-  ]
-}
+import TreeData from './sample.data.js';
 
 export default class Treeview extends Component {
 
@@ -46,7 +7,7 @@ export default class Treeview extends Component {
     super(props);
     let _this = this;
     this.state = {
-      data: treeData,
+      data: TreeData,
       editableNode: ''
     }
   }
@@ -81,12 +42,18 @@ export default class Treeview extends Component {
     this.setState({ value });
   }
 
-  closeForm = (value) => {
-    this.state.editableNode;
-    value.name = this.state.editableNode.name;
-    value.exportValue = this.state.editableNode.exportValue;
-    value.editMode = false;
-    this.setState({ value });
+  closeForm = (value, parent, index) => {
+    if (value.name !== '' && value.exportValue !== '') {
+      value.name = this.state.editableNode.name;
+      value.exportValue = this.state.editableNode.exportValue;
+      value.editMode = false;
+      this.setState({ value });
+    }
+    else {
+      console.log(index);
+      parent.splice(index, 1);
+      this.setState({ parent });
+    }
   }
 
   doneEdit = (value) => {
@@ -123,28 +90,30 @@ export default class Treeview extends Component {
     this.setState({ node });
   }
 
-  nodeEditForm = (value) => {
+  nodeEditForm = (value, parent, index) => {
     let _this = this;
     return (
-      <div className="node node_edit" onClick={function (e) { e.stopPropagation() }}>
+      <div className="node node_edit" onClick={(e) => { e.stopPropagation() }}>
         <form className="node_edit_form">
           <div className="field name">
             <input value={value.name}
               type="text"
               name='name'
               placeholder='Option'
-              onChange={function (e) { _this.handleEditChange(e, value) }} />
+              onChange={function (e) { _this.handleEditChange(e, value) }}
+            />
           </div>
           <div className="field code">
             <input value={value.exportValue}
               type="text"
               name='exportValue'
               placeholder='Value'
-              onChange={function (e) { _this.handleEditChange(e, value) }} />
+              onChange={function (e) { _this.handleEditChange(e, value) }}
+            />
           </div>
           <div className="field action_node">
             <span className="fa fa-check" onClick={function (e) { _this.doneEdit(value) }}></span>
-            <span className="fa fa-close" onClick={function (e) { _this.closeForm(value) }}></span>
+            <span className="fa fa-close" onClick={function (e) { _this.closeForm(value, parent, index) }}></span>
           </div>
         </form>
       </div>
@@ -173,8 +142,8 @@ export default class Treeview extends Component {
           </div>
         )
         item = (
-          <li key={index} onClick={function (e) { e.stopPropagation(); _this.toggleView(value) }}>
-            {(value.editMode) ? _this.nodeEditForm(value) : normalMode}
+          <li key={index} onClick={(e) => { e.stopPropagation(); _this.toggleView(value) }}>
+            {(value.editMode) ? _this.nodeEditForm(value, node, index) : normalMode}
             {babies}
           </li>
         )
@@ -203,7 +172,7 @@ export default class Treeview extends Component {
 
         item = (
           <li key={index} onClick={(e) => e.stopPropagation()}>
-            {(value.editMode) ? _this.nodeEditForm(value) : normalMode}
+            {(value.editMode) ? _this.nodeEditForm(value, node, index) : normalMode}
           </li>
         );
       }
@@ -246,12 +215,11 @@ export default class Treeview extends Component {
 
   render() {
     return (
-      <div>
-        <div className="segment_title segment_title_with_action">Option Values
-
-                </div>
-        <div className="group_dropdown_content">
-          {this.getNodes()}
+      <div className="row">
+        <div className="col-md-offset-4 col-md-3">
+          <div className="group_dropdown_content">
+            {this.getNodes()}
+          </div>
         </div>
       </div>
     );
