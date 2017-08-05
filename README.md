@@ -14,13 +14,9 @@ npm i -S react-treeview-component
 * css
 * html
 
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
 ## Authors
 
-* **Billie Thompson**  [PurpleBooth](https://github.com/prodhan29)
+* **Nahid hasan prodhan**  [PurpleBooth](https://github.com/prodhan29)
 
 ## License
 
