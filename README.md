@@ -5,7 +5,7 @@ A react tree component where each node is consist of key-value pairs
 ### Installing
 
 ```
-npm i -S react-treeview-component
+npm i -S react-treeview-customizable
 ```
 
 ## Built With
@@ -16,7 +16,7 @@ npm i -S react-treeview-component
 
 ## Authors
 
-* **Nahid hasan prodhan**  [PurpleBooth](https://github.com/prodhan29)
+* **Nahid hasan prodhan**  [prodhan29](https://github.com/prodhan29)
 
 ## License
 
