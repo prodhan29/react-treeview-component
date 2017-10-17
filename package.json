@@ -1,7 +1,8 @@
 {
   "name": "react-treeview-customizable",
-  "version": "0.1.2",
+  "version": "0.1.11",
   "private": false,
+  "main": "./src/index.js",
   "author": "Nahid hasan prodhan",
   "homepage": "https://prodhan29.github.io/react-treeview-component",
   "dependencies": {

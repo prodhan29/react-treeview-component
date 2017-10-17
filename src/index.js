@@ -1,8 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import TreeList from './App';
-import registerServiceWorker from './registerServiceWorker';
+var React  = require('react');
+var TreeViewCustomizable = require('./App');
 
-ReactDOM.render(<TreeList />, document.getElementById('root'));
-registerServiceWorker();
+module.exports = {
+    TreeViewCustomizable: TreeViewCustomizable
+}

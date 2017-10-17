@@ -8,6 +8,26 @@ A react tree component where each node is consist of key-value pairs
 npm i -S react-treeview-customizable
 ```
 
+### Usage
+
+```
+import React, { Component } from 'react';
+import Treeview from 'react-treeview-customizable';
+
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <Treeview />
+      </div>
+    );
+  }
+}
+
+export default App;
+
+```
+
 ## Built With
 
 * react
